@@ -13,6 +13,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::get('course', \App\Http\Livewire\CourseController::class);
+
+Route::get('students', \App\Http\Livewire\StudentController::class);
+
+Route::get('certificate', [\App\Http\Controllers\CertificateController::class, 'index']);
+
+
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });

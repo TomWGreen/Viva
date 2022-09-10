@@ -14,11 +14,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        \App\Models\User::factory()->create([
+            'name' => 'Tom Green',
+            'email' => 'tom.green@bastionflowe.com',
+            'password' => '$2y$10$v3NJWOcHDJgWPikO/wzMw.oJvwt6voRnVqRQUXqNSeUZW5xzVCQ/S',
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $this->call(DocumentSeeder::class);
+        $this->call(CourseSeeder::class);
+        $this->call(StudentSeeder::class);
+
     }
 }
